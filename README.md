@@ -11,7 +11,8 @@ This repo is designed to help you quickly "set sail" with [Istio](https://istio.
 
 #### Option A - Deploy Istio using Helm (*recommended*)
 1. [Install Helm locally](https://github.com/kubernetes/helm/blob/master/docs/install.md). At the time of this writing, Rancher 1.6 supports helm/tiller 2.3, so you want to have a 2.3.x helm client. This is the helm client which will use the information we previously setup in `~/.kube/config` to talk to our K8 cluster. We don't need to setup tiller because it is already included in the Rancher distribution.
-2. Add the [Kubernetes Incubator Helm chart repo](https://github.com/kubernetes/charts/tree/master/incubator/istio) `helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator`. Special thanks to the folks who worked on this helm chart.
+2. Add the [Kubernetes Incubator Helm chart repo](https://github.com/kubernetes/charts/tree/master/incubator/istio):
+`helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator` Special thanks to the folks who worked on this helm chart.
 3. Deploy the chart `helm install -n istio incubator/istio`
 
 
@@ -20,12 +21,16 @@ This repo is designed to help you quickly "set sail" with [Istio](https://istio.
 
 
 ### Deploy Istio Sample Application (BookInfo)
-1. From the root of this repo directory, Run `istioctl_bin=$PWD/bin/istioctl`
+1. From the root of this repo directory, Run: `istioctl_bin=$PWD/bin/istioctl`
 2. While in the same directory, run `kubectl apply -f <(istioctl kube-inject -f samples/apps/bookinfo/bookinfo.yaml)`
 
 
-### Viewing the Sample Applicatiomn
+### Viewing the Sample Application
 
 1. Run `kubectl get ingress -o wide` to get the IP address of the Istio ingress.
 2. You should then be able to view `BookInfo` in your browser at http://$GATEWAYURL/productpage
 3. See https://istio.io/docs/samples/bookinfo.html for more information on this app
+
+### Feedback
+
+Have you developed something cool with Istio on Rancher? We'd love to hear about it. Feel free to drop us a line on twitter ([@Rancher_Labs](https://twitter.com/rancher_labs)) or our user slack https://slack.rancher.io/. 
